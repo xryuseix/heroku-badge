@@ -17,7 +17,7 @@ app.get("/badge", async (req, res) => {
       const badgeColor: string = activeFlag ? "624888" : "D35C46";
       res.redirect(
         `https://img.shields.io/badge/${appName.replace(
-          "-",
+          /-/g,
           "_"
         )}-${status}-${badgeColor}?logo=heroku`
       );
