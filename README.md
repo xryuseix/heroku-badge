@@ -1,1 +1,0 @@
-![test](http://localhost:5000/badge?app=neet-obserber)
