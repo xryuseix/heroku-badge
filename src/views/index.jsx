@@ -14,6 +14,10 @@ const Apps = [
     alt: "non-existent-apps",
   },
   {
+    url: "https://heroku-booting-badge.herokuapp.com/badge?app=Wrong_app_name#*@$%_:{}",
+    alt: "Wrong_app_name",
+  },
+  {
     url: "https://heroku-booting-badge.herokuapp.com/badge",
     alt: "No param",
   },
@@ -66,9 +70,6 @@ const indexPage = () => {
             <th className="index_badge">Badge</th>
           </tr>
         </thead>
-        <img sec="https://img.shields.io/badge/ERROR-Wrong_app_name-D35C46?logo=heroku">
-        <img sec="https://img.shields.io/badge/ERROR-Param_is_undefined-D35C46?logo=heroku">
-        <img sec="https://img.shields.io/badge/ERROR-Something_error-D35C46?logo=heroku">
         <tbody>
           {Apps.map((data) => (
             <tr>

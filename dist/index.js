@@ -11,34 +11,43 @@ app.engine("jsx", expressReactViews.createEngine());
 app.get("/", (_req, res) => {
     res.render("index.jsx");
 });
-const activeColor = "624888";
-const inActiveColor = "D35C46";
+// const activeColor: string = "624888";
+// const inActiveColor: string = "D35C46";
+// バッジを表示するの処理
 app.get("/badge", async (req, res) => {
     const fetch = require("node-fetch");
     const appName = req.query.app;
     if (typeof appName !== "undefined") {
         try {
-            const response = await fetch(`https://${appName}.herokuapp.com`);
-            const activeFlag = response.ok;
-            const status = activeFlag ? "Activate" : "Inactivate";
-            const badgeColor = activeFlag ? activeColor : inActiveColor;
-            res.redirect(`https://img.shields.io/badge/Heroku-${status}-${badgeColor}?logo=heroku`);
+            if (/^[a-z\d\-]+$/.test(appName)) {
+                const response = await fetch(`https://${appName}.herokuapp.com`);
+                const activeFlag = response.ok;
+                if (activeFlag) {
+                    res.sendFile(__dirname + "/views/badges/Heroku-Activate.svg");
+                }
+                else {
+                    res.sendFile(__dirname + "/views/badges/Heroku-Inactivate.svg");
+                }
+            }
+            else {
+                // 別のBadgeにしてもいいかも
+                res.sendFile(__dirname + "/views/badges/ERROR-Wrong_app_name.svg");
+            }
         }
         catch (err) {
+            // これらのURLの時に起動
             // http://localhost:5000/badge?app
             // http://localhost:5000/badge?app=
-            const status = "404";
-            const message = "Something_error!";
-            res.redirect(`https://img.shields.io/badge/${status}-${message}-${inActiveColor}?logo=heroku`);
+            res.sendFile(__dirname + "/views/badges/ERROR-Something_error.svg");
         }
     }
     else {
+        // これらのURLの時に起動
         // http://localhost:5000/badge
-        const status = "404";
-        const message = "Param_is_undefined";
-        res.redirect(`https://img.shields.io/badge/${status}-${message}-${inActiveColor}?logo=heroku`);
+        res.sendFile(__dirname + "/views/badges/ERROR-Param_is_undefined.svg");
     }
 });
+// 起動時の処理
 app.listen(app.get("port"), function () {
     console.log("Node app is running at localhost:" + app.get("port"));
 });

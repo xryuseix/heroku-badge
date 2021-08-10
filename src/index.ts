@@ -26,50 +26,27 @@ app.get("/badge", async (req: any, res: any) => {
       if (/^[a-z\d\-]+$/.test(appName)) {
         const response = await fetch(`https://${appName}.herokuapp.com`);
         const activeFlag: boolean = response.ok;
-        // 画像生成コード
-        // const status: string = activeFlag ? "Activate" : "Inactivate";
-        // const badgeColor: string = activeFlag ? activeColor : inActiveColor;
-        // res.redirect(
-        //   `https://img.shields.io/badge/Heroku-${status}-${badgeColor}?logo=heroku`
-        // );
         if (activeFlag) {
           res.sendFile(__dirname + "/views/badges/Heroku-Activate.svg");
         } else {
           res.sendFile(__dirname + "/views/badges/Heroku-Inactivate.svg");
         }
-      }else {
-        // 別のBadgeにしてもいいかも
-        res.sendFile(__dirname + "/views/badges/Heroku-Inactivate.svg");
+      } else {
+        // これらのURLの時に起動
+        // http://localhost:5000/badge?app=Wrong_app_name#*@$%_:{}
+        res.sendFile(__dirname + "/views/badges/ERROR-Wrong_app_name.svg");
       }
     } catch (err) {
       // これらのURLの時に起動
       // http://localhost:5000/badge?app
       // http://localhost:5000/badge?app=
-
-      // 画像生成コード
-      // const status: string = "404";
-      // const message: string = "Something_error!";
-      // res.redirect(
-      //   `https://img.shields.io/badge/${status}-${message}-${inActiveColor}?logo=heroku`
-      // );
-      res.sendFile(__dirname + "/views/badges/404-Something_error.svg");
+      res.sendFile(__dirname + "/views/badges/ERROR-Something_error.svg");
     }
   } else {
     // これらのURLの時に起動
     // http://localhost:5000/badge
-
-    // 画像生成コード
-    // const status: string = "404";
-    // const message: string = "Param_is_undefined";
-    // res.redirect(
-    //   `https://img.shields.io/badge/${status}-${message}-${inActiveColor}?logo=heroku`
-    // );
-    res.sendFile(__dirname + "/views/badges/404-Param_is_undefined.svg");
+    res.sendFile(__dirname + "/views/badges/ERROR-Param_is_undefined.svg");
   }
-});
-
-app.get("/static/active", async (req: any, res: any) => {
-  res.sendFile("../views/status.svg");
 });
 
 // 起動時の処理
