@@ -2,14 +2,18 @@
 /** @format */
 const express = require("express");
 const path = require("path");
-const expressReactViews = require("express-react-views");
 const app = express();
 app.set("port", process.env.PORT || 5000);
-app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname + "/../", "views")));
+app.set("views", path.join(__dirname + "/../", "views"));
 app.set("view engine", "jsx");
-app.engine("jsx", expressReactViews.createEngine());
-app.get("/", (_req, res) => {
-    res.render("index.jsx");
+app.engine("jsx", require("express-react-views").createEngine());
+app.listen(app.get("port"), function () {
+    console.log("Node app is running at localhost:" + app.get("port"));
+});
+// app.get('/', require(path.join(__dirname + "/../", "routes")).index);
+app.get('/', (_req, res) => {
+    res.render('index.tsx');
 });
 const activeColor = "624888";
 const inActiveColor = "D35C46";
@@ -38,8 +42,5 @@ app.get("/badge", async (req, res) => {
         const message = "Param_is_undefined";
         res.redirect(`https://img.shields.io/badge/${status}-${message}-${inActiveColor}?logo=heroku`);
     }
-});
-app.listen(app.get("port"), function () {
-    console.log("Node app is running at localhost:" + app.get("port"));
 });
 //# sourceMappingURL=index.js.map

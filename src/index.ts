@@ -2,17 +2,17 @@
 
 const express = require("express");
 const path = require("path");
+const expressReactViews = require("express-react-views");
 
 const app = express();
 app.set("port", process.env.PORT || 5000);
-app.use(express.static(path.join(__dirname + "/../", "static")));
 
-app.listen(app.get("port"), function () {
-  console.log("Node app is running at localhost:" + app.get("port"));
-});
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "jsx");
+app.engine("jsx", expressReactViews.createEngine());
 
-app.get("/", function (_req: any, res: any) {
-  res.sendFile(path.join(__dirname + "/../", "static/index.html"));
+app.get("/", (_req: any, res: any) => {
+  res.render("index.jsx");
 });
 
 const activeColor: string = "624888";
@@ -47,4 +47,8 @@ app.get("/badge", async (req: any, res: any) => {
       `https://img.shields.io/badge/${status}-${message}-${inActiveColor}?logo=heroku`
     );
   }
+});
+
+app.listen(app.get("port"), function () {
+  console.log("Node app is running at localhost:" + app.get("port"));
 });
