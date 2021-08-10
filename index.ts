@@ -1,12 +1,21 @@
 /** @format */
 
-import * as functions from "firebase-functions";
-import * as express from "express";
+const express = require("express");
 
 const app = express();
-app.use(express.static("public"));
 
-app.get("/badge", async (req, res) => {
+app.set("port", process.env.PORT || 5000);
+app.use(express.static(__dirname + "/public"));
+
+app.listen(app.get("port"), function () {
+  console.log("Node app is running at localhost:" + app.get("port"));
+});
+
+app.get("/", function (_req: any, res: any) {
+  res.sendFile(__dirname + '/index.html');
+});
+
+app.get("/badge", async (req: any, res: any) => {
   const fetch = require("node-fetch");
   const appName = req.query.app as string | undefined;
   if (typeof appName !== "undefined") {
@@ -25,7 +34,7 @@ app.get("/badge", async (req, res) => {
       // http://localhost:5000/badge?app
       // http://localhost:5000/badge?app=
       res.redirect(
-        `https://img.shields.io/badge/404-param_is_undefined-D35C46?logo=heroku`
+        `https://img.shields.io/badge/404-something_error!-D35C46?logo=heroku`
       );
     }
   } else {
@@ -35,5 +44,3 @@ app.get("/badge", async (req, res) => {
     );
   }
 });
-
-exports.app = functions.https.onRequest(app);

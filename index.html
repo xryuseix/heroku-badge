@@ -1,0 +1,91 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Heroku badges</title>
+  </head>
+  <body>
+    <h2>Welcome to Heroku badges! (unofficial)</h2>
+    <p>
+      This program checks the working status of
+      <a href="https://heroku.com/home">Heroku</a> and generates the URL of
+      <a href="https://shields.io/">shieils.io</a>.
+    </p>
+    <h2>Usage</h2>
+    <p>
+      Write it in markdown like this →
+      <code style="background-color: gainsboro"
+        >![something](https://heroku-booting-badge.herokuapp.com/badge?app={YOUR HEROKU APP
+        NAME})</code
+      >
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: left">Example URL</th>
+          <th style="text-align: center">Badge</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: left">
+            <a href="https://heroku-booting-badge.herokuapp.com/badge?app=neet-obserber"
+              >https://heroku-booting-badge.herokuapp.com/badge?app=neet-obserber</a
+            >
+          </td>
+          <td style="text-align: center">
+            <img
+              src="https://heroku-booting-badge.herokuapp.com/badge?app=neet-obserber"
+              alt="neet-obserber"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: left">
+            <a href="https://heroku-booting-badge.herokuapp.com/badge?app=non-existent-apps"
+              >https://heroku-booting-badge.herokuapp.com/badge?app=non-existent-apps</a
+            >
+          </td>
+          <td style="text-align: center">
+            <img
+              src="https://heroku-booting-badge.herokuapp.com/badge?app=non-existent-apps"
+              alt="non-existent-apps"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: left">
+            <a href="https://heroku-booting-badge.herokuapp.com/badge"
+              >https://heroku-booting-badge.herokuapp.com/badge</a
+            >
+          </td>
+          <td style="text-align: center">
+            <img src="https://heroku-booting-badge.herokuapp.com/badge" alt="No param" />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: left">
+            <a href="https://heroku-booting-badge.herokuapp.com/badge?app"
+              >https://heroku-booting-badge.herokuapp.com/badge?app</a
+            >
+          </td>
+          <td style="text-align: center">
+            <img src="https://heroku-booting-badge.herokuapp.com/badge?app" alt="Incorrect param" />
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: left">
+            <a href="https://heroku-booting-badge.herokuapp.com/badge?app="
+              >https://heroku-booting-badge.herokuapp.com/badge?app=</a
+            >
+          </td>
+          <td style="text-align: center">
+            <img src="https://heroku-booting-badge.herokuapp.com/badge?app=" alt="Incorrect param" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
