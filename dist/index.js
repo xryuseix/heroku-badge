@@ -11,6 +11,8 @@ app.listen(app.get("port"), function () {
 app.get("/", function (_req, res) {
     res.sendFile(path.join(__dirname + "/../", "static/index.html"));
 });
+const activeColor = "624888";
+const inActiveColor = "5CB85C";
 app.get("/badge", async (req, res) => {
     const fetch = require("node-fetch");
     const appName = req.query.app;
@@ -19,18 +21,22 @@ app.get("/badge", async (req, res) => {
             const response = await fetch(`https://${appName}.herokuapp.com`);
             const activeFlag = response.ok;
             const status = activeFlag ? "Activate" : "Inactivate";
-            const badgeColor = activeFlag ? "624888" : "D35C46";
-            res.redirect(`https://img.shields.io/badge/${appName.replace(/-/g, "_")}-${status}-${badgeColor}?logo=heroku`);
+            const badgeColor = activeFlag ? activeColor : inActiveColor;
+            res.redirect(`https://img.shields.io/badge/Heroku-${status}-${badgeColor}?logo=heroku`);
         }
         catch (err) {
             // http://localhost:5000/badge?app
             // http://localhost:5000/badge?app=
-            res.redirect(`https://img.shields.io/badge/404-something_error!-D35C46?logo=heroku`);
+            const status = "404";
+            const message = "Something_error!";
+            res.redirect(`https://img.shields.io/badge/${status}-${message}-${inActiveColor}?logo=heroku`);
         }
     }
     else {
         // http://localhost:5000/badge
-        res.redirect(`https://img.shields.io/badge/404-param_is_undefined-D35C46?logo=heroku`);
+        const status = "404";
+        const message = "Param_is_undefined";
+        res.redirect(`https://img.shields.io/badge/${status}-${message}-${inActiveColor}?logo=heroku`);
     }
 });
 //# sourceMappingURL=index.js.map
