@@ -1,7 +1,8 @@
 /** @format */
 
-const React = require("react");
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 
+const React = require("react");
 
 const Apps = [
   {
@@ -34,7 +35,7 @@ const indexPage = () => {
       </head>
       <h2>Welcome to Heroku badges! (unofficial)</h2>
       <p>
-        This program checks the working status of
+        This program checks the working status of{' '}
         <a
           href="https://heroku.com/home"
           target="_blank"
@@ -46,13 +47,19 @@ const indexPage = () => {
       </p>
       <h2>Usage</h2>
       <p>
-        Write it in markdown like this →
-        <code style={{ backgroundColor: "gainsboro" }}>
-          ![something](https://heroku-booting-badge.herokuapp.com/badge?app=
-          {"{"}YOUR HEROKU APP NAME{"}"})
-        </code>
+        Write it in Markdown, HTML, ... like this.
+        <SyntaxHighlighter language="markdown">
+          {
+            "![something](https://heroku-booting-badge.herokuapp.com/badge?app={YOUR HEROKU APP NAME})"
+          }
+        </SyntaxHighlighter>
+        <SyntaxHighlighter language="html">
+          {
+            '<a href="https://heroku-booting-badge.herokuapp.com/badge?app={YOUR HEROKU APP NAME}" />'
+          }
+        </SyntaxHighlighter>
       </p>
-      <table className="index_table">
+      <table border="1" cellSpacing="0">
         <thead>
           <tr>
             <th className="index_url">Example URL</th>
