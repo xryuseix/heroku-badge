@@ -1,0 +1,14 @@
+/** @format */
+
+.index_table th,
+.index_table td {
+  border: solid 1px black;
+  /*実線 1px 黒*/
+}
+
+.index_url {
+  text-align: "left";
+}
+.index_badge {
+  text-align: "left";
+}
