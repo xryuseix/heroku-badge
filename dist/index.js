@@ -12,7 +12,7 @@ app.get("/", function (_req, res) {
     res.sendFile(path.join(__dirname + "/../", "static/index.html"));
 });
 const activeColor = "624888";
-const inActiveColor = "5CB85C";
+const inActiveColor = "D35C46";
 app.get("/badge", async (req, res) => {
     const fetch = require("node-fetch");
     const appName = req.query.app;
