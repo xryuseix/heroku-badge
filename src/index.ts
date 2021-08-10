@@ -16,7 +16,7 @@ app.get("/", function (_req: any, res: any) {
 });
 
 const activeColor: string = "624888";
-const inActiveColor: string = "5CB85C";
+const inActiveColor: string = "D35C46";
 
 app.get("/badge", async (req: any, res: any) => {
   const fetch = require("node-fetch");
