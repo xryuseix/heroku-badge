@@ -1,18 +1,18 @@
 /** @format */
 
 const express = require("express");
+const path = require("path");
 
 const app = express();
-
 app.set("port", process.env.PORT || 5000);
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(path.join(__dirname + "/../", "static")));
 
 app.listen(app.get("port"), function () {
   console.log("Node app is running at localhost:" + app.get("port"));
 });
 
 app.get("/", function (_req: any, res: any) {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(path.join(__dirname + "/../", "static/index.html"));
 });
 
 app.get("/badge", async (req: any, res: any) => {
