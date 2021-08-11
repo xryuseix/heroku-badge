@@ -10,7 +10,7 @@ const Apps = [
     alt: "heroku-booting-badge",
   },
   {
-    url: "https://heroku-booting-badge.herokuapp.com/badge?app=non_existent_apps",
+    url: "https://heroku-booting-badge.herokuapp.com/badge?app=0-non-existent-apps",
     alt: "non-existent-apps",
   },
   {

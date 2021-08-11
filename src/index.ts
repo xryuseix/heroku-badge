@@ -14,8 +14,6 @@ app.get("/", (_req: any, res: any) => {
   res.render("index.jsx");
 });
 
-// const activeColor: string = "624888";
-// const inActiveColor: string = "D35C46";
 
 // バッジを表示するの処理
 app.get("/badge", async (req: any, res: any) => {
