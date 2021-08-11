@@ -7,11 +7,11 @@ const expressReactViews = require("express-react-views");
 const app = express();
 app.set("port", process.env.PORT || 5000);
 app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "jsx");
-app.engine("jsx", expressReactViews.createEngine());
+app.set("view engine", "tsx");
+app.engine("tsx", expressReactViews.createEngine());
 
 app.get("/", (_req: any, res: any) => {
-  res.render("index.jsx");
+  res.render("index.tsx");
 });
 
 

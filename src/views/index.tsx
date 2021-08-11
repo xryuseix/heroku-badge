@@ -34,12 +34,9 @@ const Apps = [
 const indexPage = () => {
   return (
     <div>
-      <head>
-        <link rel="stylesheet" href="./index.css" />
-      </head>
       <h2>Welcome to Heroku badges! (unofficial)</h2>
       <p>
-        This program checks the working status of{' '}
+        This program checks the working status of{" "}
         <a
           href="https://heroku.com/home"
           target="_blank"
@@ -63,20 +60,24 @@ const indexPage = () => {
           }
         </SyntaxHighlighter>
       </p>
-      <table border="1" cellSpacing="0">
+      <table style={{ borderSpacing: "0" } as React.CSSProperties}>
         <thead>
           <tr>
-            <th className="index_url">Example URL</th>
-            <th className="index_badge">Badge</th>
+            <th style={{ textAlign: "center" } as React.CSSProperties}>
+              Example URL
+            </th>
+            <th style={{ textAlign: "center" } as React.CSSProperties}>
+              Badge
+            </th>
           </tr>
         </thead>
         <tbody>
           {Apps.map((data) => (
-            <tr>
-              <td className="index_url">
+            <tr style={{ textAlign: "left" } as React.CSSProperties}>
+              <td style={{ border: "1px solid black" } as React.CSSProperties}>
                 <a href={data.url}>{data.url}</a>
               </td>
-              <td className="index_badge">
+              <td style={{ border: "1px solid black" } as React.CSSProperties}>
                 <img src={data.url} alt={data.alt} />
               </td>
             </tr>
